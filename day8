@@ -1,0 +1,33 @@
+local task = {}
+
+
+print("Welcome to the task manager ")
+::manager::
+print("tasks______add___exit")
+local choice = io.read()
+
+if choice == "exit" then
+    os.exit()
+end
+
+if choice == "tasks" then
+    if #task == 0 then
+        print("0 tasks")
+    else
+        for i = 1, #task do
+            print(i .. ". " .. task[i])
+        end
+        
+    end
+    goto manager
+end
+
+if choice == "add" then
+    print("Please write what task youd like to add")
+    local task_add = io.read()
+
+    table.insert(task, task_add)
+    print("Task sucessfully inserted")
+
+    goto manager
+end
