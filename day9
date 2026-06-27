@@ -1,0 +1,51 @@
+local fleet = {
+    test_ship = {
+        speed = 500,
+        cargo = 100,
+        crew = 50
+    } 
+}
+
+
+print("Welcome to the ship stat checker ")
+::checker::
+print("ships___add___exit")
+local choice = io.read()
+
+if choice == "exit" then
+    os.exit()
+end
+
+if choice == "ships" then
+    for ship, stats in pairs(fleet) do
+        print("ship name:"..ship)
+        print("max speed:"..stats.speed)
+        print("cargo:"..stats.cargo)
+        print("crew:"..stats.crew)
+    end
+    goto checker
+end
+
+if choice == "add" then
+    print("Please write the name of the ship youd like to add")
+    local fleet_add = io.read()
+
+    fleet[fleet_add] = {}
+
+    print("insert max speed")
+    fleet[fleet_add].speed = io.read("*n")
+    io.read()
+
+    print("insert cargo")
+    fleet[fleet_add].cargo = io.read("*n")
+    io.read()
+
+    print("insert max crew")
+    fleet[fleet_add].crew = io.read("*n")
+    io.read()
+
+
+    print(fleet_add.." successfully added")
+    goto checker
+end
+
