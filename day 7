@@ -1,0 +1,52 @@
+local balence = 0
+
+print("Welcome to the atm machience which function are you to do today")
+::ATM::
+print("deposit__withdraw__balence__exit")
+local choice = io.read()
+
+if choice == "exit" then
+    print("Thanks for using the atm exiting now...")
+    os.exit()
+end
+
+if choice == "deposit" then
+    ::deposit_atm::
+    print("How much would you like to deposit into atm")
+    local deposit_amount = io.read("*n")
+    io.read()
+    
+    balence = balence + deposit_amount 
+    print("Sucessfully desposited money")
+    goto ATM
+end
+
+if choice == balence then
+    print("Your balence is... $ ".. balence)
+    goto ATM
+end
+
+if choice == "withdraw" then
+    ::withdraw_atm::
+    print("How much would you like to withdraw out of atm")
+    local withdraw_amount = io.read("*n")
+    io.read()
+
+    if withdraw_amount > balence then
+        print("You dont have enough money to withdraw please choose a different value")
+        goto withdraw_atm
+    end
+
+    if withdraw_amount < balence then
+        balence = balence - withdraw_amount 
+        print("Sucessfully withdrawed money")
+        goto ATM
+    end
+end
+
+if choice == "balence" then
+    print("Your balence is  $".. balence)
+    goto ATM
+end
+
+      
