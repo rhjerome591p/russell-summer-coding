@@ -1,0 +1,62 @@
+local backpack = { "Sword", "Potion", "Shield" }
+local max_slots = 5
+
+print("Welcome to the inventory manager")
+::manager::
+print("items___add___remove___exit")
+local choice = io.read()
+
+if choice == "exit" then
+    os.exit()
+end
+
+if choice == "items" then
+    print("Backpack slots used: " .. #backpack .. "/" .. max_slots)
+    if #backpack == 0 then
+        print("Your backpack is empty")
+    else
+        for i = 1, #backpack do
+            print("[" .. i .. "] " .. backpack[i])
+        end
+    end
+    goto manager
+end
+
+if choice == "add" then
+    if #backpack >= max_slots then
+        print("Backpack is full")
+        goto manager
+    end
+
+    print("Please write the name of the item youd like to add")
+    local item_add = io.read()
+    
+    if item_add == "" then
+        print("Cannot add an empty item name")
+        goto manager
+    end
+    
+    table.insert(backpack, item_add)
+    print(item_add .. " successfully added")
+    goto manager
+end
+
+if choice == "remove" then
+    if #backpack == 0 then
+        print("Nothing to remove")
+        goto manager
+    end
+
+    print("Enter the item number that you want to remove")
+    local remove_input = io.read("*n")
+    io.read()
+
+    if remove_input == nil or remove_input < 1 or remove_input > #backpack then
+        print("Error: Illegal index number! That slot does not exist.")
+        goto manager
+    end
+
+    local removed_item = table.remove(backpack, remove_input)
+    print(removed_item .. " successfully removed")
+    goto manager
+end
