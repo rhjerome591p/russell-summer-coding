@@ -1,0 +1,157 @@
+local shovel = 0
+local key = 0
+local tree_energy = 0
+local purple_sword = 0
+
+
+::start_portal::
+print("Theres 3 portals in front of you. The first one burns a firey red aura. The second one has green flowers and")
+print("grass covered around it. And the third one contains a purple mysterious aura. Which one do you choose")
+print("___1___2___3___")
+local portal_choice = io.read("*n")
+io.read()
+
+if portal_choice == 1 then
+    print("As you enter the portal you feel the air around you burn hot until it clears into a burning forest")
+    print("You see a clearing amongust the burning trees but also a path that leads to a well")
+    print("____Test_your_luck_in_the_trees____Go_across_the_path_to_enter_the_well____Go_back_to_the_portal_room____")
+    local fire = io.read("*n")
+    io.read()
+
+    if fire == 1 then
+
+        print("As you run and travere the burning trees you get 3rd degree burns and die. Then suddenly your eyes wake")
+        goto start_portal
+    end
+    if fire == 3 then
+        print("You walk back in the portal as the hot air turns cold. Back in the same spot you once were")
+        goto start_portal
+    end
+
+    if fire == 2 then
+        print("As you walk the path to the well you see a rope that goes down into the abyss. However the rope looks")
+        print("unstable and might snap under youe weight")
+        print("____Use_the_rope_and_hope_it_holds____Go_across_the_blazing_trees_unstead____")
+        local well = io.read("*n")
+        io.read()
+
+        if well == 2 then
+            print("You retrace your steps back to where the portal and the blaze stand and you run head first")
+            print("As you run and travere the burning trees you get 3rd degree burns and die. Then suddenly your eyes wake")
+            goto start_portal
+        end
+        if well == 1 then
+            shovel = 1
+            ::down_well::
+            print("You travel down the well and luckly the rope hold up. You find a shovel on the surprising cold floor")
+            print("of the well. You grab it but in the corner of your eye you see a door. It looks like it requires a lock.")
+            ::door_choice::
+            print("____Open_the_door_(requires_key)____Go back up the well")
+            local door = io.read("*n")
+            io.read()
+
+            if door == 1 then
+                if key == 1 then
+                    print("As you open the door you feel a sharp enegry and presence.")
+                    print("Do you eneter")
+                    print("____yes____no____")
+                    local door_enter =  io.read("*n")
+                    
+                    if door_enter == 2 then
+                        print("You decide it isnt worth the risk and close the door")
+                        goto door_choice
+                    end
+                    if door_enter == 1 then
+                        if tree_energy ~= 1 then
+                            print("As you walk into the door a sharp energy push you making you unable to go in")
+                            goto door_choice
+                        end
+                        
+                        if tree_energy == 1 then
+                            print("As you walk into the door you feel the energy consuming you until you glow bright green")
+                            print("Once you make it to the backside of the room you find a purple sword and you decide to pick it up")
+                            purple_sword = 1
+                            print("Then you see the purple portal from before infront of you and the door locks behind you")
+                            print("Do you enter........___yes_____no____")
+                            local spawn_purple = io.read("*n")
+                            io.read()
+
+                            if spawn_purple == 1 then
+                                print("As you walk to the portal you get suddenly sucked into the portal")
+                                print("Once you get inside you see a corrupted beast")
+                                print("You and the beast fight blah blah blah you win yea")
+                                os.exit()
+
+                            end
+                            if spawn_purple == 2 then
+                                print("As you walk to the door you get suddenly sucked into the portal")
+                                print("Once you get inside you see a corrupted beast")
+                                print("You and the beast fight blah blah blah you win yea")
+                                os.exit()
+                            end
+                        end
+                    end
+                    
+
+                end
+                if key ~= 1 then
+                    print("You try to open the door but its locked you will need a key")
+                    goto door_choice
+                end
+            end
+            
+
+            if door == 2 then
+                print(" You go back up the rope and you now you must decide where to go next.")
+                print("____Back in the well____Into the blazing trees____Back out the portal")
+                local fire_shovel = io.read("*n")
+                io.read()
+                
+                if fire_shovel == 1 then
+                    goto down_well
+                end
+                if fire_shovel == 2 then
+                     print("As you run and travere the burning trees you get 3rd degree burns and die. Then suddenly your eyes wake")
+                    goto start_portal
+                end
+                if fire_shovel == 3 then
+                    goto start_portal
+                end
+            end
+        end
+    end
+end
+
+if portal_choice == 2 then
+    print("As you enter the portal and walk through you see a rocky pile of dirt in your way.")
+    if shovel ~= 1 then
+        print(" You try to dig your hands into but the pile doesnt budge so you walk back into the portal room")
+        goto start_portal
+    end
+    if shovel == 1 then
+        print("You decide to use the shovel you obtained eariler to dig away at the pile and it crumbles")
+        print("You see a key lying on the ground and you decide to take it. However you see a tree in the distance")
+        ::tree_choice::
+        print("____Go to the tree____Go back into the portal room")
+        key = 1
+        local go_tree = io.read("*n")
+        io.read()
+
+        if go_tree == 1 then
+            print("You go to the tree and touch it and feel a enegry coursing through you")
+            tree_energy = 1
+            print("You walk back and decide on another choice")
+            goto tree_choice
+        end
+        if go_tree == 2 then
+            print("You walk back into the familar room")
+            goto start_portal
+        end
+    end
+end
+
+if portal_choice == 3 then
+    print("As you attmept to go into the portal it suddenly pushes you out with great force")
+    print("Whatever is in there must be strong. Yet your back at the same spot")
+    goto start_portal
+end
