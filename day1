@@ -1,0 +1,320 @@
+
+local speed_potion = 900
+local strength_potion = 650
+local heal_hp = 50
+local mana_refresh = 100
+local health_increase = 250
+local mana_increase = 500
+local sword = 1200
+local bow = 1500
+local staff = 2000
+
+local speed_potion_brought = 0
+local strength_potion_brought = 0
+local heal_hp_brought = 0
+local mana_refresh_brought = 0
+local health_increase_brought = 0
+local mana_increase_brought = 0
+local sword_brought = 0
+local bow_brought = 0
+local staff_brought = 0
+
+print("Welcome to the shop. How much money would you like to spend with us today")
+local cash = io.read("*n")
+io.read()
+local function recipt()
+    print("-------------------")
+    print("SHOP RECIPT")
+    print("Leftover cash:" .. cash )
+    print("-----------------")
+    print("Items broughts")
+    print("Speed Potions = ".. speed_potion_brought)
+    print("Strength Potions = ".. strength_potion_brought)
+    print("Hp Heal's = ".. heal_hp_brought)
+    print("Mana Refreshes = ".. mana_refresh_brought)
+    print("Health increases = ".. health_increase_brought)
+    print("Mana increases = ".. mana_increase_brought)
+    print("Swords = " .. sword_brought)
+    print("Bows = " .. bow_brought)
+    print("Staffs = " .. staff_brought)
+end
+::shop_menu::
+if cash < 50 then
+    print("Sorry you dont have enough cash for anything in the shop come back next time")
+    os.exit()
+end
+if cash >= 50 then
+    print ("What are you looking for today.You have ".. cash.. " cash")
+    print("___Potions___Stats___Weapons___") 
+end
+local catagory = io.read()
+::potion_shop::
+if catagory == "potions" then
+    print ("Choose which potion you would like")
+    print("___Speed___Strength___")
+    print("<--back            leave-->")
+end
+    local potion = io.read()
+if potion == "back" then
+    goto shop_menu
+end
+if potion == "leave" then
+    print("Thanks for shopping")
+    recipt()
+    os.exit()
+end
+if potion == "speed" then
+    print("How much speed potions would you like to buy")
+    local amount = io.read("*n")
+    io.read()
+    if cash < speed_potion * amount then  
+        print("Sorry you cant afford that please choose another item or lower the amount")
+        goto potion_shop
+    end
+    if cash >= speed_potion * amount then
+         cash = cash - speed_potion * amount
+         speed_potion_brought = amount + speed_potion_brought
+        print("Heres your speed potion is there anything else youd like to buy?")
+        print("___yes___no___")
+        local continue = io.read()
+        if continue == "no" then
+            print("Alright then thanks for shopping")
+            recipt()
+            os.exit()
+        end
+        if continue == "yes" then
+            goto shop_menu
+        end
+    end
+end
+if potion == "strength" then
+    print("How much strength potions would you like to buy")
+    local amount = io.read("*n")
+    io.read()
+    if cash < strength_potion * amount then  
+        print("Sorry you cant afford that please choose another item or lower the amount")
+        goto potion_shop
+    end
+    if cash >= strength_potion * amount then
+         cash = cash - strength_potion * amount
+         strength_potion_brought = amount + strength_potion_brought
+        print("Heres your strength potion is there anything else youd like to buy?")
+        print("___yes___no___")
+        local continue = io.read()
+        if continue == "no" then
+            print("Alright then thanks for shopping")
+            recipt()
+            os.exit()
+        end
+        if continue == "yes" then
+            goto shop_menu
+        end
+    end
+end
+::stats_shop::
+if catagory == "stats" then
+
+    print ("Choose which potion you would like")
+    print("___Heal___Mana_Refresh___Health_Increase")
+    print("<--back            leave-->")
+end
+    local stats = io.read()
+if stats == "back" then
+    goto shop_menu
+end
+if stats == "leave" then
+    print("Thanks for shopping")
+    recipt()
+    os.exit()
+end
+if stats == "heal" then
+    print("How much heals would you like to buy")
+    local amount = io.read("*n")
+    io.read()
+    if cash < heal_hp * amount then  
+        print("Sorry you cant afford that please choose another item or lower the amount")
+        goto stats_shop
+    end
+    if cash >= heal_hp * amount then
+         cash = cash - heal_hp * amount
+         heal_hp_brought = amount + heal_hp_brought
+        print("Heres your heal is there anything else youd like to buy?")
+        print("___yes___no___")
+        local continue = io.read()
+        if continue == "no" then
+            print("Alright then thanks for shopping")
+            recipt()
+            os.exit()
+        end
+        if continue == "yes" then
+            goto shop_menu
+        end
+    end
+end
+if stats == "mana_refresh" then
+        print("How many mana refreshes would you like to buy?")
+        local amount = io.read("*n")
+        io.read()
+        if cash < mana_refresh * amount then  
+            print("Sorry you cant afford that please choose another item or lower the amount")
+            goto stats_shop
+        end
+        if cash >= mana_refresh * amount then
+            cash = cash - mana_refresh * amount
+            mana_refresh_brought = amount + mana_refresh_brought
+            print("Heres your mana refresh! Is there anything else youd like to buy?")
+            print("___yes___no___")
+            local continue = io.read()
+            if continue == "no" then
+                print("Alright then thanks for shopping")
+                recipt()
+                os.exit()
+            end
+            if continue == "yes" then
+                goto shop_menu
+            end
+        end
+    end
+
+    if stats == "health_increase" then
+        print("How many health increases would you like to buy?")
+        local amount = io.read("*n")
+        io.read()
+        if cash < health_increase * amount then  
+            print("Sorry you cant afford that please choose another item or lower the amount")
+            goto stats_shop
+        end
+        if cash >= health_increase * amount then
+            cash = cash - health_increase * amount
+            health_increase_brought = amount + health_increase_brought
+            print("Heres your health increase! Is there anything else youd like to buy?")
+            print("___yes___no___")
+            local continue = io.read()
+            if continue == "no" then
+                print("Alright then thanks for shopping")
+                recipt()
+                os.exit()
+            end
+            if continue == "yes" then
+                goto shop_menu
+            end
+        end
+    end
+
+    if stats == "mana_increase" then
+        print("How many mana increases would you like to buy?")
+        local amount = io.read("*n")
+        io.read()
+        if cash < mana_increase * amount then  
+            print("Sorry you cant afford that please choose another item or lower the amount")
+            goto stats_shop
+        end
+        if cash >= mana_increase * amount then
+            cash = cash - mana_increase * amount
+            mana_increase_brought = amount + mana_increase_brought
+            print("Heres your mana increase! Is there anything else youd like to buy?")
+            print("___yes___no___")
+            local continue = io.read()
+            if continue == "no" then
+                print("Alright then thanks for shopping")
+                recipt()
+                os.exit()
+            end
+            if continue == "yes" then
+                goto shop_menu
+            end
+        end
+    end
+ ::weapon_shop::
+if catagory == "weapons" then
+   
+    print("Choose which weapon you would like")
+    print("___sword___bow___staff___")
+    print("<--back            leave-->")
+    
+    local weapon = io.read()
+    
+    if weapon == "back" then
+        goto shop_menu
+    end
+    if weapon == "leave" then
+        print("Thanks for shopping")
+        recipt()
+        os.exit()
+    end
+    
+    if weapon == "sword" then
+        print("How many swords would you like to buy?")
+        local amount = io.read("*n")
+        io.read()
+        if cash < sword * amount then  
+            print("Sorry you cant afford that please choose another item or lower the amount")
+            goto weapon_shop
+        end
+        if cash >= sword * amount then
+            cash = cash - sword * amount
+            sword_brought = amount + sword_brought
+            print("Heres your sword! Is there anything else youd like to buy?")
+            print("___yes___no___")
+            local continue = io.read()
+            if continue == "no" then
+                print("Alright then thanks for shopping")
+                recipt()
+                os.exit()
+            end
+            if continue == "yes" then
+                goto shop_menu
+            end
+        end
+    end
+
+    if weapon == "bow" then
+        print("How many bows would you like to buy?")
+        local amount = io.read("*n")
+        io.read()
+        if cash < bow * amount then  
+            print("Sorry you cant afford that please choose another item or lower the amount")
+            goto weapon_shop
+        end
+        if cash >= bow * amount then
+            cash = cash - bow * amount
+            bow_brought = amount + bow_brought
+            print("Heres your bow! Is there anything else youd like to buy?")
+            print("___yes___no___")
+            local continue = io.read()
+            if continue == "no" then
+                print("Alright then thanks for shopping")
+                recipt()
+                os.exit()
+            end
+            if continue == "yes" then
+                goto shop_menu
+            end
+        end
+    end
+
+    if weapon == "staff" then
+        print("How many staffs would you like to buy?")
+        local amount = io.read("*n")
+        io.read()
+        if cash < staff * amount then  
+            print("Sorry you cant afford that please choose another item or lower the amount")
+            goto weapon_shop
+        end
+        if cash >= staff * amount then
+            cash = cash - staff * amount
+            staff_brought = amount + staff_brought
+            print("Heres your staff! Is there anything else youd like to buy?")
+            print("___yes___no___")
+            local continue = io.read()
+            if continue == "no" then
+                print("Alright then thanks for shopping")
+                recipt()
+                os.exit()
+            end
+            if continue == "yes" then
+                goto shop_menu
+            end
+        end
+    end
+end
