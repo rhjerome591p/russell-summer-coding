@@ -1,0 +1,65 @@
+math.randomseed(os.time())
+local code = math.random(1, 100)
+local max_turns = 12 
+local failed_attempts = 0
+local vault_cracked = false
+
+
+print("VAULT SYSTEM ONLINE")
+print("Crack the code before lockdown.")
+
+
+while max_turns > 0 and not vault_cracked do
+    print("Attempts remaining " .. max_turns)
+    print("Enter your bypass code ")
+    
+    local input = io.read()
+    local guess = tonumber(input)
+    
+    if guess == nil then
+        print("Input is not a valid number.")
+        max_turns = max_turns - 1
+        failed_attempts = failed_attempts + 1
+        
+    elseif guess < 1 or guess > 100 then
+        print("Range is 1 to 100 / cost you 1 turn!")
+        max_turns = max_turns - 1
+        failed_attempts = failed_attempts + 1
+        
+    elseif guess == code then
+        vault_cracked = true
+        print("Access Granted")
+        
+    else
+        max_turns = max_turns - 1
+        failed_attempts = failed_attempts + 1
+        
+        local distance = math.abs(code - guess)
+        
+        if distance <= 5 then
+            io.write("Hot")
+        elseif distance <= 15 then
+            io.write("Warm")
+        else
+            io.write("Cold")
+        end
+        
+        if guess > code then
+            print("Try a lower number.")
+        else
+            print("Try a higher number.")
+        end
+        
+        if failed_attempts == 4 then
+            print("4 Failed attempts detected")
+            print("Automated lockdown measures initiated: Remaining turns halved")
+            max_turns = math.floor(max_turns / 2) 
+        end
+    end
+end
+
+if not vault_cracked then
+    print("Maxium attmepts reached")
+    print("Lockdowning down")
+    print("The code was: " .. code ..  "better luck next time chud")
+end
